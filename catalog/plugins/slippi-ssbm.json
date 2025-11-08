@@ -1,0 +1,9 @@
+{
+  "id": "slippi:ssbm",
+  "version": "1.0.0",
+  "name": "SSBM Plugin",
+  "description": "Reads live Slippi events from Dolphin.",
+  "artifactUrl": "https://<your-host>/plugins/ssbm/1.0.0/saltshaker-plugin-ssbm-1.0.0.tgz",
+  "sha256": "b078e38a495d46f5e9c7eb763e31487a2e6162be7253254e595b67b72dcaa03b",
+  "minClientVersion": "0.2.10"
+}
