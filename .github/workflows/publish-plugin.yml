@@ -13,6 +13,9 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
 
     steps:
       - name: Checkout repo
@@ -24,8 +27,8 @@ jobs:
           node-version: 20
 
       - name: Build plugin package
-        working-directory: plugins/${{ github.event.inputs.plugin }}
         run: |
+          cd plugins/${{ github.event.inputs.plugin }}
           npm ci
           npm pack
           ls -lh *.tgz
@@ -70,8 +73,10 @@ jobs:
 
       - name: Commit and push updated catalog
         run: |
+          plugin=${{ github.event.inputs.plugin }}
+          version=${{ github.event.inputs.version }}
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add catalog/
-          git commit -m "Update ${plugin} to v${version}"
+          git commit -m "Update ${plugin} to v${version}" || echo "No changes to commit"
           git push
