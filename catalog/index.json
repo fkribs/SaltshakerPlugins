@@ -1,24 +1,15 @@
 {
-  "id": "slippi:ssbm",
-  "name": "SSBM Plugin",
-  "description": "Reads live Slippi events from Dolphin.",
-  "author": {
-    "name": "Forrest Kribs",
-    "url": "https://github.com/fkribs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fkribs/SaltshakerSSBMPlugin"
-  },
-  "license": "MIT",
-
-  "versions": {
-    "1.0.0": {
-      "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/slippi-ssbm-v1.0.0/saltshaker-plugin-slippi-ssbm-1.0.0.tgz",
-      "sha256": "b078e38a495d46f5e9c7eb763e31487a2e6162be7253254e595b67b72dcaa03b",
-      "minClientVersion": "0.2.10",
-      "publishedAt": "2025-11-07T19:05:00Z",
-      "changelog": "Initial release"
+  "schema": 1,
+  "generatedAt": "2025-11-22T05:00:00Z",
+  "plugins": [
+    {
+      "id": "slippi:ssbm",
+      "name": "SSBM Plugin",
+      "latest": "1.0.0",
+      "description": "Reads live Slippi events from Dolphin.",
+      "repo": "https://github.com/fkribs/SaltshakerSSBMPlugin",
+      "tags": ["melee", "slippi"],
+      "path": "plugins/slippi-ssbm.json"
     }
-  }
+  ]
 }
