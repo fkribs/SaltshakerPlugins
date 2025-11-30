@@ -6,7 +6,6 @@ on:
       plugin:
         description: "Plugin ID (e.g. slippi:ssbm)"
         required: true
-        type: string
 
 jobs:
   build-and-publish:
@@ -16,76 +15,104 @@ jobs:
       - name: Checkout registry repo
         uses: actions/checkout@v4
 
+      #
+      # READ MANIFEST METADATA
+      #
       - name: Read plugin manifest
         id: manifest
         run: |
-          MANIFEST="catalog/plugins/${{ github.event.inputs.plugin##*: }}.json"
+          plugin="${{ github.event.inputs.plugin }}"
+          short="${plugin##*:}"   # slippi:ssbm -> ssbm
 
-          echo "manifest_file=$MANIFEST" >> $GITHUB_OUTPUT
+          manifest="catalog/plugins/$short.json"
+          echo "manifest_file=$manifest" >> $GITHUB_OUTPUT
 
-          REPO=$(jq -r '.repository' $MANIFEST)
-          VERSION=$(jq -r '.version' $MANIFEST)
-          COMMIT=$(jq -r '.commit // empty' $MANIFEST)
+          repo=$(jq -r '.repository' "$manifest")
+          version=$(jq -r '.version' "$manifest")
+          commit=$(jq -r '.commit // empty' "$manifest")
 
-          if [ -z "$COMMIT" ]; then
-            echo "ERROR: plugin manifest is missing a 'commit' field."
+          if [ -z "$commit" ]; then
+            echo "ERROR: plugin manifest missing 'commit'"
             exit 1
           fi
 
-          echo "plugin_repo=$REPO" >> $GITHUB_OUTPUT
-          echo "plugin_version=$VERSION" >> $GITHUB_OUTPUT
-          echo "plugin_commit=$COMMIT" >> $GITHUB_OUTPUT
+          echo "plugin_repo=$repo" >> $GITHUB_OUTPUT
+          echo "plugin_version=$version" >> $GITHUB_OUTPUT
+          echo "plugin_commit=$commit" >> $GITHUB_OUTPUT
+          echo "plugin_short=$short" >> $GITHUB_OUTPUT
 
-      - name: Clone plugin source from developer repo
+      #
+      # CLONE UPSTREAM PLUGIN SOURCE CODE
+      #
+      - name: Clone plugin source
         run: |
           git clone ${{ steps.manifest.outputs.plugin_repo }} plugin-source
           cd plugin-source
           git checkout ${{ steps.manifest.outputs.plugin_commit }}
 
+      #
+      # BUILD + PACK
+      #
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies & build plugin
+      - name: Install dependencies & build
         working-directory: plugin-source
         run: |
           npm ci
-          npm run build || true  # optional, if plugin requires build
+          npm run build || true
           npm pack
           ls -lh *.tgz
 
-      - name: Move built artifact into registry repo
+      #
+      # COPY BUILT ARTIFACT
+      #
+      - name: Move built artifact
         run: |
-          plugin_name="${{ github.event.inputs.plugin##*: }}"
+          short="${{ steps.manifest.outputs.plugin_short }}"
           version="${{ steps.manifest.outputs.plugin_version }}"
 
-          mkdir -p plugins/$plugin_name
-          mv plugin-source/*.tgz "plugins/$plugin_name/saltshaker-plugin-$plugin_name-$version.tgz"
+          mkdir -p plugins/$short
+          mv plugin-source/*.tgz "plugins/$short/saltshaker-plugin-$short-$version.tgz"
 
+      #
+      # HASH
+      #
       - name: Compute SHA-256
         id: hash
         run: |
-          FILE="plugins/${{ github.event.inputs.plugin##*: }}/saltshaker-plugin-${{ github.event.inputs.plugin##*: }}-${{ steps.manifest.outputs.plugin_version }}.tgz"
-          echo "file=$FILE" >> $GITHUB_OUTPUT
-          echo "sha=$(sha256sum $FILE | awk '{print $1}')" >> $GITHUB_OUTPUT
+          short="${{ steps.manifest.outputs.plugin_short }}"
+          version="${{ steps.manifest.outputs.plugin_version }}"
+          file="plugins/$short/saltshaker-plugin-$short-$version.tgz"
 
+          echo "file=$file" >> $GITHUB_OUTPUT
+          echo "sha=$(sha256sum $file | awk '{print $1}')" >> $GITHUB_OUTPUT
+
+      #
+      # RELEASE
+      #
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event.inputs.plugin##*: }}-v${{ steps.manifest.outputs.plugin_version }}
+          tag_name: ${{ steps.manifest.outputs.plugin_short }}-v${{ steps.manifest.outputs.plugin_version }}
           name: ${{ github.event.inputs.plugin }} v${{ steps.manifest.outputs.plugin_version }}
           files: ${{ steps.hash.outputs.file }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      #
+      # UPDATE MANIFEST
+      #
       - name: Update plugin manifest metadata
         run: |
-          plugin="${{ github.event.inputs.plugin##*: }}"
+          manifest="${{ steps.manifest.outputs.manifest_file }}"
+          short="${{ steps.manifest.outputs.plugin_short }}"
           version="${{ steps.manifest.outputs.plugin_version }}"
           sha="${{ steps.hash.outputs.sha }}"
-          manifest="catalog/plugins/${plugin}.json"
-          url="https://github.com/${{ github.repository }}/releases/download/${plugin}-v${version}/saltshaker-plugin-${plugin}-${version}.tgz"
+
+          url="https://github.com/${{ github.repository }}/releases/download/${short}-v${version}/saltshaker-plugin-${short}-${version}.tgz"
 
           jq --arg v "$version" \
              --arg u "$url" \
@@ -93,18 +120,25 @@ jobs:
              '.version=$v | .artifactUrl=$u | .sha256=$s' \
              "$manifest" > tmp.json && mv tmp.json "$manifest"
 
+      #
+      # UPDATE INDEX
+      #
       - name: Update catalog index
         run: |
           plugin="${{ github.event.inputs.plugin }}"
-          id="${plugin}"
-          path="plugins/${plugin##*:}.json"
+          id="$plugin"
+          short="${{ steps.manifest.outputs.plugin_short }}"
+          version="${{ steps.manifest.outputs.plugin_version }}"
 
           jq --arg id "$id" \
-             --arg latest "${{ steps.manifest.outputs.plugin_version }}" \
+             --arg latest "$version" \
              '(.plugins[] | select(.id==$id)).latest=$latest' \
              catalog/index.json > tmp.json && mv tmp.json catalog/index.json
 
-      - name: Commit and push catalog updates
+      #
+      # COMMIT & PUSH
+      #
+      - name: Commit and push
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
