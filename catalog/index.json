@@ -3,7 +3,7 @@
   "generatedAt": "2025-11-22T05:00:00Z",
   "plugins": [
     {
-      "id": "slippi:ssbm",
+      "id": "slippi-ssbm",
       "name": "SSBM Plugin",
       "latest": "1.0.0",
       "description": "Reads live Slippi events from Dolphin.",
