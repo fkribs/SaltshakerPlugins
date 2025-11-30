@@ -3,9 +3,9 @@
   "name": "SSBM Plugin",
   "description": "Reads live Slippi events from Dolphin.",
   "repository": "https://github.com/fkribs/SaltshakerSSBMPlugin",
-  "author": "Forrest Kribs",
+  "commit": "f6e53367f4f90fbfc7101e6b77cac774fda173f0",
   "version": "1.0.0",
-  "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/slippi-ssbm-v1.0.0/saltshaker-plugin-slippi-ssbm-1.0.0.tgz",
-  "sha256": "b078e38a495d46f5e9c7eb763e31487a2e6162be7253254e595b67b72dcaa03b",
+  "artifactUrl": "",
+  "sha256": "",
   "minClientVersion": "0.2.10"
 }
