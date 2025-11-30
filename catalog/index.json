@@ -8,7 +8,10 @@
       "latest": "1.0.0",
       "description": "Reads live Slippi events from Dolphin.",
       "repo": "https://github.com/fkribs/SaltshakerSSBMPlugin",
-      "tags": ["melee", "slippi"],
+      "tags": [
+        "melee",
+        "slippi"
+      ],
       "path": "plugins/slippi-ssbm.json"
     }
   ]
