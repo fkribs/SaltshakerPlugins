@@ -6,7 +6,6 @@ on:
       plugin:
         description: "Plugin ID (e.g. slippi:ssbm)"
         required: true
-        type: string
 
 jobs:
   build-and-publish:
