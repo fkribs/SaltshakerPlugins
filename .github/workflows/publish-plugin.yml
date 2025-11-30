@@ -4,79 +4,110 @@ on:
   workflow_dispatch:
     inputs:
       plugin:
-        description: "Plugin folder name (e.g. slippi-ssbm)"
+        description: "Plugin ID (e.g. slippi:ssbm)"
         required: true
-      version:
-        description: "Version number (e.g. 1.0.1)"
-        required: true
+        type: string
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ github.workspace }}
 
     steps:
-      - name: Checkout repo
+      - name: Checkout registry repo
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Read plugin manifest
+        id: manifest
+        run: |
+          MANIFEST="catalog/plugins/${{ github.event.inputs.plugin##*: }}.json"
+
+          echo "manifest_file=$MANIFEST" >> $GITHUB_OUTPUT
+
+          REPO=$(jq -r '.repository' $MANIFEST)
+          VERSION=$(jq -r '.version' $MANIFEST)
+          COMMIT=$(jq -r '.commit // empty' $MANIFEST)
+
+          if [ -z "$COMMIT" ]; then
+            echo "ERROR: plugin manifest is missing a 'commit' field."
+            exit 1
+          fi
+
+          echo "plugin_repo=$REPO" >> $GITHUB_OUTPUT
+          echo "plugin_version=$VERSION" >> $GITHUB_OUTPUT
+          echo "plugin_commit=$COMMIT" >> $GITHUB_OUTPUT
+
+      - name: Clone plugin source from developer repo
+        run: |
+          git clone ${{ steps.manifest.outputs.plugin_repo }} plugin-source
+          cd plugin-source
+          git checkout ${{ steps.manifest.outputs.plugin_commit }}
+
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Build plugin package
+      - name: Install dependencies & build plugin
+        working-directory: plugin-source
         run: |
-          cd plugins/${{ github.event.inputs.plugin }}
           npm ci
+          npm run build || true  # optional, if plugin requires build
           npm pack
           ls -lh *.tgz
+
+      - name: Move built artifact into registry repo
+        run: |
+          plugin_name="${{ github.event.inputs.plugin##*: }}"
+          version="${{ steps.manifest.outputs.plugin_version }}"
+
+          mkdir -p plugins/$plugin_name
+          mv plugin-source/*.tgz "plugins/$plugin_name/saltshaker-plugin-$plugin_name-$version.tgz"
 
       - name: Compute SHA-256
         id: hash
         run: |
-          FILE=$(ls plugins/${{ github.event.inputs.plugin }}/*.tgz)
+          FILE="plugins/${{ github.event.inputs.plugin##*: }}/saltshaker-plugin-${{ github.event.inputs.plugin##*: }}-${{ steps.manifest.outputs.plugin_version }}.tgz"
           echo "file=$FILE" >> $GITHUB_OUTPUT
           echo "sha=$(sha256sum $FILE | awk '{print $1}')" >> $GITHUB_OUTPUT
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event.inputs.plugin }}-v${{ github.event.inputs.version }}
-          name: ${{ github.event.inputs.plugin }} v${{ github.event.inputs.version }}
+          tag_name: ${{ github.event.inputs.plugin##*: }}-v${{ steps.manifest.outputs.plugin_version }}
+          name: ${{ github.event.inputs.plugin }} v${{ steps.manifest.outputs.plugin_version }}
           files: ${{ steps.hash.outputs.file }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update plugin manifest
+      - name: Update plugin manifest metadata
         run: |
-          plugin=${{ github.event.inputs.plugin }}
-          version=${{ github.event.inputs.version }}
-          sha=${{ steps.hash.outputs.sha }}
-          url="https://github.com/${{ github.repository }}/releases/download/${plugin}-v${version}/saltshaker-plugin-${plugin}-${version}.tgz"
+          plugin="${{ github.event.inputs.plugin##*: }}"
+          version="${{ steps.manifest.outputs.plugin_version }}"
+          sha="${{ steps.hash.outputs.sha }}"
           manifest="catalog/plugins/${plugin}.json"
+          url="https://github.com/${{ github.repository }}/releases/download/${plugin}-v${version}/saltshaker-plugin-${plugin}-${version}.tgz"
 
-          # Update manifest JSON
           jq --arg v "$version" \
              --arg u "$url" \
              --arg s "$sha" \
-             '.version=$v | .artifactUrl=$u | .sha256=$s | .minClientVersion="0.2.10"' \
+             '.version=$v | .artifactUrl=$u | .sha256=$s' \
              "$manifest" > tmp.json && mv tmp.json "$manifest"
 
-          # Update catalog index
-          jq --arg id "$plugin" \
-             --arg path "plugins/${plugin}.json" \
-             --arg latest "$version" \
+      - name: Update catalog index
+        run: |
+          plugin="${{ github.event.inputs.plugin }}"
+          id="${plugin}"
+          path="plugins/${plugin##*:}.json"
+
+          jq --arg id "$id" \
+             --arg latest "${{ steps.manifest.outputs.plugin_version }}" \
              '(.plugins[] | select(.id==$id)).latest=$latest' \
              catalog/index.json > tmp.json && mv tmp.json catalog/index.json
 
-      - name: Commit and push updated catalog
+      - name: Commit and push catalog updates
         run: |
-          plugin=${{ github.event.inputs.plugin }}
-          version=${{ github.event.inputs.version }}
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git add catalog/
-          git commit -m "Update ${plugin} to v${version}" || echo "No changes to commit"
+          git add catalog/ plugins/
+          git commit -m "Publish plugin ${{ github.event.inputs.plugin }} version ${{ steps.manifest.outputs.plugin_version }}" || echo "No changes"
           git push
