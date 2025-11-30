@@ -1,5 +1,5 @@
 {
-  "id": "slippi:ssbm",
+  "id": "slippi-ssbm",
   "name": "SSBM Plugin",
   "description": "Reads live Slippi events from Dolphin.",
   "repository": "https://github.com/fkribs/SaltshakerSSBMPlugin",
