@@ -4,7 +4,7 @@
   "description": "Reads live Slippi events from Dolphin.",
   "repository": "https://github.com/fkribs/SaltshakerSSBMPlugin",
   "commit": "8a8c9c9619476a95551ba6ae591048ef997a6c91",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/slippi-ssbm-v1.0.0/saltshaker-plugin-slippi-ssbm-1.0.0.tgz",
   "sha256": "0b06e600cafc1e904d4cdf71ba28583ab359f6b28fd198a29d6ee4c958feb4f9",
   "minClientVersion": "0.2.10",
