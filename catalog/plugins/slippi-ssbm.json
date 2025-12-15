@@ -9,7 +9,14 @@
   "sha256": "9c44cc943ddfa04db1b0b456bd1a79583ee1fcc893d6cd40ca1c6c74ac50f1b0",
   "minClientVersion": "0.2.10",
   "permissions": [
-    "resource:slippi:user.read",
-    "bridge:dolphin:events.read"
+    "file.read",
+    "dolphin.subscribe"
+  ],
+  "resources":[
+    {
+      "id": "slippiUserFile",
+      "path": "{home}/AppData/Roaming/Slippi Launcher/netplay/User/Slippi/user.json",
+      "type": "json"
+    }
   ]
 }
