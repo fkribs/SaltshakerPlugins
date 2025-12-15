@@ -6,7 +6,7 @@
   "commit": "8a8c9c9619476a95551ba6ae591048ef997a6c91",
   "version": "1.0.0",
   "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/slippi-ssbm-v1.0.0/saltshaker-plugin-slippi-ssbm-1.0.0.tgz",
-  "sha256": "9c44cc943ddfa04db1b0b456bd1a79583ee1fcc893d6cd40ca1c6c74ac50f1b0",
+  "sha256": "0b06e600cafc1e904d4cdf71ba28583ab359f6b28fd198a29d6ee4c958feb4f9",
   "minClientVersion": "0.2.10",
   "permissions": [
     "file.read",
