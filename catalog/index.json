@@ -5,7 +5,7 @@
     {
       "id": "slippi-ssbm",
       "name": "SSBM Plugin",
-      "latest": "1.0.1",
+      "latest": "1.0.2",
       "description": "Reads live Slippi events from Dolphin.",
       "repo": "https://github.com/fkribs/SaltshakerSSBMPlugin",
       "tags": [
