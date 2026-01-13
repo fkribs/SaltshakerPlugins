@@ -18,5 +18,14 @@
       "path": "{home}/AppData/Roaming/Slippi Launcher/netplay/User/Slippi/user.json",
       "type": "json"
     }
+  ],
+  "settings": [
+    {
+      "key": "hangupOnGameEnd",
+      "type": "boolean",
+      "label": "Hang up on game end",
+      "description": "If enabled, Saltshaker will disconnect the call when Dolphin emits GameEnd.",
+      "default": true
+    }
   ]
 }
