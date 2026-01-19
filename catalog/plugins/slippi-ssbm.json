@@ -2,6 +2,7 @@
   "id": "slippi-ssbm",
   "name": "SSBM Plugin",
   "description": "Reads live Slippi events from Dolphin.",
+  "donationUrl": "https://buymeacoffee.com/fkribs",
   "repository": "https://github.com/fkribs/SaltshakerSSBMPlugin",
   "commit": "cc6b93abf0c482595e4f9e6e90ea02a677fa2e1e",
   "version": "1.0.5",
