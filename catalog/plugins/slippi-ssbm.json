@@ -26,7 +26,7 @@
       "type": "boolean",
       "label": "Hang up on game end",
       "description": "If enabled, Saltshaker will disconnect the call when Dolphin emits GameEnd.",
-      "default": true
+      "default": false
     }
   ]
 }
