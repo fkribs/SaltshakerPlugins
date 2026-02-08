@@ -12,7 +12,21 @@
         "melee",
         "slippi"
       ],
-      "path": "plugins/slippi-ssbm.json"
+      "path": "plugins/slippi-ssbm.json",
+      "dev": false
+    },
+    {
+      "id": "rivals-of-aether",
+      "name": "Rivals of Aether Plugin",
+      "latest": "0.0.1",
+      "description": "Reads live match events from Rivals of Aether.",
+      "repo": "https://github.com/fkribs/SaltshakerROAPlugin",
+      "tags": [
+        "rivals",
+        "roa"
+      ],
+      "path": "plugins/rivals-of-aether.json",
+      "dev": true
     }
   ]
 }
