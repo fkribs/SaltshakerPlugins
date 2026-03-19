@@ -18,6 +18,7 @@
     {
       "id": "slippiUserFile",
       "path": "{home}/AppData/Roaming/Slippi Launcher/netplay/User/Slippi/user.json",
+      "macPath": "{home}/Library/Application Support/com.project-slippi.dolphin/Slippi/user.json",
       "type": "json"
     }
   ],
