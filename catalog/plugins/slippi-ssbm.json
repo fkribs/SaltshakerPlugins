@@ -12,8 +12,13 @@
   "minClientVersion": "0.2.10",
   "permissions": [
     "file.read",
-    "dolphin.subscribe"
+    "dolphin.subscribe",
+    "app.launch"
   ],
+  "externalApp": {
+    "label": "Launch Slippi",
+    "settingKey": "slippiExePath"
+  },
   "resources": [
     {
       "id": "slippiUserFile",
@@ -28,6 +33,21 @@
       "type": "boolean",
       "label": "Hang up on game end",
       "description": "If enabled, Saltshaker will disconnect the call when Dolphin emits GameEnd.",
+      "default": false
+    },
+    {
+      "key": "slippiExePath",
+      "type": "path",
+      "label": "Slippi executable path",
+      "description": "Path to the Slippi Launcher executable.",
+      "winDefault": "{home}/AppData/Local/Programs/Slippi Launcher/Slippi Launcher.exe",
+      "macDefault": "{home}/AppData/Local/Programs/Slippi Launcher/Slippi Launcher.exe"
+    },
+    {
+      "key": "autoLaunchSlippi",
+      "type": "boolean",
+      "label": "Auto-launch Slippi when plugin runs",
+      "description": "Automatically launches the Slippi executable when the plugin starts.",
       "default": false
     }
   ]
