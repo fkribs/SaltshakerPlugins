@@ -8,7 +8,7 @@
   "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/youtube-v0.0.4/saltshaker-plugin-youtube-0.0.4.tgz",
   "sha256": "62fd9ac1e1d04ed5f9e1e3b3974788dc535666ea3705bf3711c3ae60df5d299c",
   "dev": false,
-  "minClientVersion": "1.0.4",
+  "minClientVersion": "1.0.5",
   "permissions": [
     "bridge:browser.window"
   ]
