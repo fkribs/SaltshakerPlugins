@@ -41,7 +41,7 @@
         "video"
       ],
       "path": "plugins/youtube.json",
-      "dev": true
+      "dev": false
     }
   ]
 }
