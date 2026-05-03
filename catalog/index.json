@@ -39,7 +39,7 @@
         "video"
       ],
       "path": "plugins/youtube.json",
-      "dev": false
+      "dev": true
     }
   ]
 }
