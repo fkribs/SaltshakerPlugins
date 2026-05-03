@@ -5,8 +5,8 @@
   "repository": "https://github.com/fkribs/SaltshakerYoutubePlugin",
   "commit": "712b2c9c10b415d01dbd5f3bdfc12472f25000f7",
   "version": "0.0.3",
-  "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/youtube-v0.0.2/saltshaker-plugin-youtube-0.0.2.tgz",
-  "sha256": "e9b41bf1893f5ddc07fb02308d6e37fb6bd891077c9b8e299c2e1057a3201eb9",
+  "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/youtube-v0.0.3/saltshaker-plugin-youtube-0.0.3.tgz",
+  "sha256": "ca4ad8f4d55682f8de4deff97a772ae160f1d9c0fd517d23632ea69a4012add8",
   "dev": false,
   "minClientVersion": "1.0.4",
   "permissions": [
