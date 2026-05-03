@@ -8,6 +8,7 @@
       "latest": "1.0.8",
       "description": "Reads live Slippi events from Dolphin.",
       "repo": "https://github.com/fkribs/SaltshakerSSBMPlugin",
+      "icon": "icons/slippi-ssbm.png",
       "tags": [
         "melee",
         "slippi"
@@ -34,6 +35,7 @@
       "latest": "0.0.2",
       "description": "Opens YouTube in-app and connects voice calls based on the video you're watching.",
       "repo": "https://github.com/fkribs/SaltshakerYoutubePlugin",
+      "icon": "icons/youtube.png",
       "tags": [
         "youtube",
         "video"
