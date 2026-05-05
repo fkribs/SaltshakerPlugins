@@ -6,7 +6,7 @@
   "commit": "4205943a40ff8ffd51828b8e886eb209259f32ef",
   "version": "0.0.1",
   "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/reddit-v0.0.1/saltshaker-plugin-reddit-0.0.1.tgz",
-  "sha256": "7631a67629c6303062fe4a0e774a5b80c840846dc86eb7809afea0c5823ba33f",
+  "sha256": "c0f49695eb725c9b3129ad23aa6690e357300e6689e683fd89eb15918dd650ee",
   "dev": true,
   "minClientVersion": "1.0.4",
   "permissions": [
