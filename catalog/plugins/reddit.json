@@ -4,7 +4,7 @@
   "description": "Browse Reddit communities together. Connects voice calls based on the subreddit you're browsing.",
   "repository": "https://github.com/fkribs/SaltshakerRedditPlugin",
   "commit": "4205943a40ff8ffd51828b8e886eb209259f32ef",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/reddit-v0.0.1/saltshaker-plugin-reddit-0.0.1.tgz",
   "sha256": "c0f49695eb725c9b3129ad23aa6690e357300e6689e683fd89eb15918dd650ee",
   "dev": true,
