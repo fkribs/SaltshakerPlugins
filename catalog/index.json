@@ -33,7 +33,7 @@
       "id": "reddit",
       "name": "Reddit Plugin",
       "latest": "0.0.2",
-      "description": "Browse Reddit communities together. Connects voice calls based on the subreddit you're browsing.",
+      "description": "Browse Reddit communities together. Connects voice calls based on the post you're browsing.",
       "repo": "https://github.com/fkribs/SaltshakerRedditPlugin",
       "icon": "icons/reddit.png",
       "tags": [
