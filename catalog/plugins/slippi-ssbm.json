@@ -9,10 +9,11 @@
   "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/slippi-ssbm-v1.0.8/saltshaker-plugin-slippi-ssbm-1.0.8.tgz",
   "sha256": "8aefa2cb63469cc090b74942e51c892bfbd2c402547692be6568e08fd7069e10",
   "dev": false,
-  "minClientVersion": "1.0.4",
+  "minClientVersion": "1.0.5",
   "permissions": [
     "file.read",
     "dolphin.subscribe",
+    "dolphin.spectate",
     "app.launch"
   ],
   "externalApp": {
