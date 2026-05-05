@@ -4,8 +4,8 @@
   "description": "Reads live Slippi events from Dolphin.",
   "donationUrl": "https://buymeacoffee.com/fkribs",
   "repository": "https://github.com/fkribs/SaltshakerSSBMPlugin",
-  "commit": "733b7461cde63e0c8a25efde58a87d3ab5350c92",
-  "version": "1.0.8",
+  "commit": "3bd0025eb49a3fa3a658dd7c0da4a2af08b85afa",
+  "version": "1.1.0",
   "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/slippi-ssbm-v1.0.8/saltshaker-plugin-slippi-ssbm-1.0.8.tgz",
   "sha256": "8aefa2cb63469cc090b74942e51c892bfbd2c402547692be6568e08fd7069e10",
   "dev": false,
@@ -49,6 +49,14 @@
       "label": "Auto-launch Slippi when plugin runs",
       "description": "Automatically launches the Slippi executable when the plugin starts.",
       "default": false
+    },
+    {
+      "key": "spectateFolder",
+      "type": "path",
+      "label": "Spectate folder path",
+      "description": "Path to the folder where Slippi writes spectate recordings. Saltshaker watches this folder to auto-join the voice call of whoever you are spectating.",
+      "winDefault": "{home}/Documents/Slippi/Spectate",
+      "macDefault": "{home}/Documents/Slippi/Spectate"
     }
   ]
 }
