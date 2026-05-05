@@ -1,0 +1,15 @@
+{
+  "id": "reddit",
+  "name": "Reddit Plugin",
+  "description": "Browse Reddit communities together. Connects voice calls based on the subreddit you're browsing.",
+  "repository": "https://github.com/fkribs/SaltshakerRedditPlugin",
+  "commit": "ddc1e3826fde1644e747b7f00994e4bae012d740",
+  "version": "0.0.1",
+  "artifactUrl": "",
+  "sha256": "",
+  "dev": true,
+  "minClientVersion": "1.0.4",
+  "permissions": [
+    "bridge:browser.window"
+  ]
+}

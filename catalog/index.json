@@ -30,6 +30,20 @@
       "dev": true
     },
     {
+      "id": "reddit",
+      "name": "Reddit Plugin",
+      "latest": "0.0.1",
+      "description": "Browse Reddit communities together. Connects voice calls based on the subreddit you're browsing.",
+      "repo": "https://github.com/fkribs/SaltshakerRedditPlugin",
+      "icon": "icons/reddit.png",
+      "tags": [
+        "reddit",
+        "browsing"
+      ],
+      "path": "plugins/reddit.json",
+      "dev": true
+    },
+    {
       "id": "youtube",
       "name": "YouTube Plugin",
       "latest": "0.0.4",
