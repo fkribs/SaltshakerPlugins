@@ -41,7 +41,7 @@
         "browsing"
       ],
       "path": "plugins/reddit.json",
-      "dev": true
+      "dev": false
     },
     {
       "id": "youtube",
