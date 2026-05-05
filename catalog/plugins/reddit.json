@@ -5,8 +5,8 @@
   "repository": "https://github.com/fkribs/SaltshakerRedditPlugin",
   "commit": "ddc1e3826fde1644e747b7f00994e4bae012d740",
   "version": "0.0.1",
-  "artifactUrl": "",
-  "sha256": "",
+  "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/reddit-v0.0.1/saltshaker-plugin-reddit-0.0.1.tgz",
+  "sha256": "7631a67629c6303062fe4a0e774a5b80c840846dc86eb7809afea0c5823ba33f",
   "dev": true,
   "minClientVersion": "1.0.4",
   "permissions": [
