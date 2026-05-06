@@ -42,7 +42,7 @@
       "label": "Slippi executable path",
       "description": "Path to the Slippi Launcher executable.",
       "winDefault": "{home}/AppData/Local/Programs/Slippi Launcher/Slippi Launcher.exe",
-      "macDefault": "{home}/AppData/Local/Programs/Slippi Launcher/Slippi Launcher.exe"
+      "macDefault": "/Applications/Slippi Launcher.app/Contents/MacOS/Slippi Launcher"
     },
     {
       "key": "autoLaunchSlippi",
