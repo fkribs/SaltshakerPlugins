@@ -57,7 +57,7 @@
       "label": "Spectate folder path",
       "description": "Path to the folder where Slippi writes spectate recordings. Saltshaker watches this folder to auto-join the voice call of whoever you are spectating.",
       "winDefault": "{home}/Documents/Slippi/Spectate",
-      "macDefault": "{home}/Documents/Slippi/Spectate"
+      "macDefault": "{home}/Slippi/Spectate"
     }
   ]
 }
