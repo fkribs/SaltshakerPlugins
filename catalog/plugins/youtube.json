@@ -1,6 +1,6 @@
 {
   "id": "youtube",
-  "name": "YouTube Plugin",
+  "name": "YouTube",
   "description": "Opens YouTube in-app and connects voice calls based on the video you're watching.",
   "repository": "https://github.com/fkribs/SaltshakerYoutubePlugin",
   "commit": "984485c063e89125fd8743e82afe2b968c332e46",
