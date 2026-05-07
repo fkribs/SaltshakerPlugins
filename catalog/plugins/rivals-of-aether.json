@@ -3,7 +3,7 @@
   "name": "Rivals of Aether Plugin",
   "description": "Reads live match events from Rivals of Aether 2.",
   "repository": "https://github.com/fkribs/SaltshakerROAPlugin",
-  "commit": "",
+  "commit": "c0446b21ead84b8659f44a303285834c3bd828b5",
   "version": "0.1.0",
   "artifactUrl": "",
   "sha256": "",
