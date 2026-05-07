@@ -22,6 +22,7 @@
       "latest": "0.1.0",
       "description": "Reads live match events from Rivals of Aether.",
       "repo": "https://github.com/fkribs/SaltshakerROAPlugin",
+      "icon": "icons/roa.png",
       "tags": [
         "rivals",
         "roa"
