@@ -5,7 +5,7 @@
   "repository": "https://github.com/fkribs/SaltshakerROAPlugin",
   "commit": "76579d5274869170d15f4aadff375e905d4d4eba",
   "version": "1.0.0",
-  "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/rivals-of-aether-v2.1.0/saltshaker-plugin-rivals-of-aether-2.1.0.tgz",
+  "artifactUrl": "https://github.com/fkribs/SaltshakerPlugins/releases/download/rivals-of-aether-v1.0.0/saltshaker-plugin-rivals-of-aether-1.0.0.tgz",
   "sha256": "8e68ae6ff081f9fd71cc8f5914c6632383279b61e2f142111c28f670f05176fb",
   "dev": true,
   "minClientVersion": "2.1.0",
