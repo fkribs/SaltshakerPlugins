@@ -6,7 +6,7 @@
       "id": "slippi-ssbm",
       "name": "SSBM",
       "latest": "1.1.0",
-      "description": "Reads live Slippi events from Dolphin.",
+      "description": "Automatically connects voice calls during Slippi SSBM matches",
       "repo": "https://github.com/fkribs/SaltshakerSSBMPlugin",
       "icon": "icons/slippi-ssbm.png",
       "tags": [
