@@ -28,7 +28,7 @@
         "roa"
       ],
       "path": "plugins/rivals-of-aether.json",
-      "dev": true
+      "dev": false
     },
     {
       "id": "reddit",
