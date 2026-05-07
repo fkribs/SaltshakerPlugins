@@ -1,7 +1,7 @@
 {
   "id": "slippi-ssbm",
   "name": "SSBM",
-  "description": "Reads live Slippi events from Dolphin.",
+  "description": "Automatically connects voice calls during Slippi SSBM matches",
   "donationUrl": "https://buymeacoffee.com/fkribs",
   "repository": "https://github.com/fkribs/SaltshakerSSBMPlugin",
   "commit": "3bd0025eb49a3fa3a658dd7c0da4a2af08b85afa",
