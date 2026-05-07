@@ -1,6 +1,6 @@
 {
   "id": "reddit",
-  "name": "Reddit Plugin",
+  "name": "Reddit",
   "description": "Browse Reddit communities together. Connects voice calls based on the post you're browsing.",
   "repository": "https://github.com/fkribs/SaltshakerRedditPlugin",
   "commit": "4205943a40ff8ffd51828b8e886eb209259f32ef",
