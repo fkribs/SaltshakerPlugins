@@ -16,7 +16,7 @@
   "resources": [
     {
       "id": "roaSaveFile",
-      "winPath": "{home}/AppData/Local/Rivals2/Saved/SaveGames/Rivals2_SaveSlot_V1.sav",
+      "path": "{home}/AppData/Local/Rivals2/Saved/SaveGames/Rivals2_SaveSlot_V1.sav",
       "type": "binary"
     }
   ]
