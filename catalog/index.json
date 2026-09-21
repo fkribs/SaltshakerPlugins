@@ -15,6 +15,7 @@
       ],
       "path": "plugins/slippi-ssbm.json",
       "broadcastWindowId": "Dolphin",
+      "moneyMatchEnabled": true,
       "dev": false
     },
     {
